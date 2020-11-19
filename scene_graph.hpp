@@ -5,16 +5,16 @@
 struct SceneGraph {
     public:
 
-    std::string getname();
-    void setname();
+    std::string getName() const;
+    void setName(std::string newname);
 
-    Node& getroot();
-    void setroot();
+    std::shared_ptr<Node> getRoot() const;
+    void setRoot(Node const& newnode);
 
     private:
 
-    std::str name;
-    Node& root;
+    std::string name;
+    std::shared_ptr<Node> root;
 }
 
 #endif SCENE_GRAPH.HPP

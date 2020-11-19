@@ -4,11 +4,11 @@
 struct Node {
     public:
 
-    Node& getParent() const;
-    void setParent(Node const& node);
+    st::shared_ptr<Node> getParent() const;
+    void setParent(Node const& newparent);
 
-    Node& getChildren(std::string name) const;
-    std::list <Node> getChildrenList() const;
+    std::shared_ptr<Node> getChildren(std::string name) const;
+    std::vector <std::shared_ptr<Node>> getChildrenList() const;
 
     std::string getName() const;
     std::string getPath() const;
@@ -20,15 +20,15 @@ struct Node {
     glm::fmt4 getWorldTransform() const;
     void setWorldTransform(glm::fmt4 const& matrix);
 
-    void addChildren(Node const& node);
-    Node& removeChildren(std::str node_name);
+    void addChildren(Node const& newchild);
+    Node& removeChildren(std::string childname);
 
     private:
 
-    Node* parent;
-    std::list<Node> children;
-    std::str name;
-    std::str path;
+    std::shared_ptr<Node> parent;
+    std::vector<std::shared_ptr<Node>> children; //Pointers inside vector
+    std::string name;//string du otto
+    std::string path;
     int depth;
     glm::fmt4 localTransform;
     glm::fmt4 worldTransform;
